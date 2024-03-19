@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:01:35 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/18 18:34:06 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:30:04 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ int	new_is_digit(char *s)
 {
 	while (*s)
 	{
-		if (*s <= 0 && *s >= 9)
+		if (*s >= 0 && *s <= 9)
 			return (EXIT_FAILURE);
 		else
-			(*s)++;
+			s++;
 	}
 	return (EXIT_SUCCESS);
 }
 
-long long int	atol(char *s)
+long long int	new_atol(char *s)
 {
 	long long int	num;
 	int				sign;
@@ -36,12 +36,12 @@ long long int	atol(char *s)
 	if (*s == '+' || *s == '-')
 	{
 		if (*s == '-')
-			sign = -1;
+			sign *= -1;
 		(*s)++;
 	}
 	while (*s >= '0' && *s <= '9')
 	{
-		num = num * 10 + *s - 48;
+		num = num * 10 + (*s - 48);
 		(*s)++;
 	}
 	return (sign * num);

@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:17:53 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/19 14:28:40 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:43:48 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,35 @@
 # include <sys/time.h>
 # include <limits.h>
 
-/* typedef struct s_philo
+/* struct	s_program; */
+
+typedef struct s_data
 {
-	
-}
+	struct s_program	*observer;
+	int					philos_id;
+	int					left_fork_id;
+	int					right_fork_id;
+	int					philo_eat_time;
+	int					last_meal_time;
+}	t_data;
 
 typedef struct s_program
 {
-	
-}
- */
+	int		number_of_philos;
+	int		time_2_eat;
+	int		time_2_sleep;
+	int		time_2_die;
+	int		number_of_meals;
+	t_data	*philos;
+}	t_program;
+
 /* ---CHECKER--- */
 int				checker(char **argv);
 int				new_is_digit(char *s);
 long long int	new_atol(char *s);
+
+/* ---INIT_STRUCT--- */
+void			init_program(t_program *p, char **argv);
+void			init_data(t_program *p);
 
 #endif

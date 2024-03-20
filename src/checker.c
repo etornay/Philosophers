@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:33:19 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/19 14:28:58 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:04:58 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static int	checker3(char **argv)
 {
-	if (new_atol(argv[5]) < 0)
+	if (!argv[5])
+		return (EXIT_SUCCESS);
+	else if (new_atol(argv[5]) < 0)
 	{
 		printf("Error\nIncorrect number of meals\n");
 		return (EXIT_FAILURE);
@@ -66,7 +68,7 @@ int	checker(char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (atol(argv[i]) > 2147483647)
+		if (new_atol(argv[i]) > 2147483647)
 		{
 			printf("Error\nNot valid number\n");
 			return (EXIT_FAILURE);

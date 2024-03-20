@@ -5,7 +5,7 @@ PHILO = philo.a
 FILES = src/main.c\
 src/checker.c\
 src/checker_utils.c\
-
+src/init_struct.c\
 
 
 OBJECTS = $(FILES:.c=.o)

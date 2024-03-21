@@ -6,28 +6,37 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:06:36 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/20 17:11:15 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:24:17 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/* void	init_mutex(t_program *p)
+void	init_mutex(t_program *p)
 {
 	int	i;
 
 	i = 0;
 	while (i < p->number_of_philos)
 	{
-		
+		pthread_mutex_init(&p->forks[i], NULL);
 		i++;
 	}
-} */
+	pthread_mutex_init(&p->dead_lock, NULL);
+	pthread_mutex_init(&p->meal_lock, NULL);
+	pthread_mutex_init(&p->write_lock, NULL);
+}
 
-void	init_data(t_program *p)
+void	init_data(t_program *p, t_data *d)
 {
 	int	i;
 
+	i = 0;
+	while (i < p->number_of_philos)
+	{
+		pthread_mutex_init(&p->forks[i], NULL);
+		i++;
+	}
 	i = 0;
 	while (i < p->number_of_philos)
 	{
@@ -36,7 +45,7 @@ void	init_data(t_program *p)
 		p->philos[i].right_fork_id = (i + 1) % p->number_of_philos;
 		p->philos[i].philo_eat_time = 0;
 		p->philos[i].last_meal_time = 0;
-		p->philos[i].observer = p;
+		p->philos[i].program = p;
 		i++;
 	}
 }

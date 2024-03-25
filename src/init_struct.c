@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:06:36 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/21 18:24:17 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:20:25 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,18 @@ void	init_mutex(t_program *p)
 		i++;
 	}
 	pthread_mutex_init(&p->dead_lock, NULL);
+	pthread_mutex_init(&p->meal_mutex_lock, NULL);
 	pthread_mutex_init(&p->meal_lock, NULL);
 	pthread_mutex_init(&p->write_lock, NULL);
+	pthread_mutex_init(&p->time_lock, NULL);
 }
 
-void	init_data(t_program *p, t_data *d)
+void	init_data(t_program *p)
 {
 	int	i;
 
 	i = 0;
+	p->forks = malloc(sizeof(pthread_mutex_t) * 200);
 	while (i < p->number_of_philos)
 	{
 		pthread_mutex_init(&p->forks[i], NULL);

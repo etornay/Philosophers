@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:17:53 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/21 18:24:36 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:00:42 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_program
 	int				time_2_sleep;
 	int				time_2_die;
 	int				number_of_meals;
+	int				start;
+	int				finish;
 	/* pthread_t	thread; */
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
@@ -56,7 +58,12 @@ long long int	new_atol(char *s);
 
 /* ---INIT_STRUCT--- */
 void			init_program(t_program *p, char **argv);
-void			init_data(t_program *p, t_data *d);
+void			init_data(t_program *p);
 void			init_mutex(t_program *p);
+
+/* ---TIME--- */
+long			ft_get_time(void);
+long			ft_difference_time(t_program *p);
+void			ft_usleep(t_program *p, int time);
 
 #endif

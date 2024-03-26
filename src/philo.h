@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:17:53 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/25 18:00:42 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:18:32 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct s_program
 	int				time_2_sleep;
 	int				time_2_die;
 	int				number_of_meals;
+	int				all_philos_eaten;
 	int				start;
 	int				finish;
-	/* pthread_t	thread; */
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	meal_mutex_lock;
@@ -51,10 +51,14 @@ typedef struct s_program
 	t_data			*philos;
 }	t_program;
 
-/* ---CHECKER--- */
-int				checker(char **argv);
+/* ---UTILS--- */
 int				new_is_digit(char *s);
 long long int	new_atol(char *s);
+void			printf_philos(t_program *p, int id, char *s);
+
+/* ---CHECKER--- */
+int				checker(char **argv);
+int				check_end(t_program *p);
 
 /* ---INIT_STRUCT--- */
 void			init_program(t_program *p, char **argv);
@@ -65,5 +69,9 @@ void			init_mutex(t_program *p);
 long			ft_get_time(void);
 long			ft_difference_time(t_program *p);
 void			ft_usleep(t_program *p, int time);
+
+/* ---ROUTINE--- */
+void			*philo_routine(void *philo);
+void			philos_eat(t_data *p);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:29:23 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/25 17:43:22 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:21:19 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	ft_usleep(t_program *p, int time)
 	total_time = ft_get_time() + time;
 	while (ft_get_time() < total_time)
 	{
-		pthread_mutex_lock(&(p->finish));
+		pthread_mutex_lock(&p->dead_lock);
 		if (p->finish != 1)
 		{
-			pthread_mutex_unlock(&(p->finish));
+			pthread_mutex_unlock(&p->dead_lock);
 			usleep(10);
 		}
 		else
 		{
-			pthread_mutex_unlock(&(p->finish));
+			pthread_mutex_unlock(&p->dead_lock);
 			break ;
 		}
 	}

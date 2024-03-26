@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:13:52 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/25 17:44:05 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:16:59 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ int	main_2(t_program *p)
 	i = 0;
 	thread = malloc(sizeof(pthread_t) * p->number_of_philos);
 	pthread_mutex_lock(&p->time_lock);
-	p->start = ft_get_time;
+	p->start = ft_get_time();
+	pthread_mutex_unlock(&p->time_lock);
 	while (i < p->number_of_philos && p->number_of_philos > 1)
 	{
+		if (pthread_create(&thread[i], NULL, &philo_routine, &p->philos[i]))
+			return (EXIT_FAILURE);
+		pthread_mutex_lock(&p->time_lock);
+		p->philos[i].last_meal_time = ft_get_time();
+		pthread_mutex_unlock(&p->time_lock);
 		i++;
 	}
 	return (EXIT_SUCCESS);

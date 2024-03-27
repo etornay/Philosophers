@@ -8,7 +8,8 @@ src/utils.c\
 src/init_struct.c\
 src/time_utils.c\
 src/routine.c\
-
+src/philos_utils.c\
+src/free.c\
 
 
 OBJECTS = $(FILES:.c=.o)

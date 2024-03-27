@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:06:36 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/25 17:20:25 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:16:44 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_data(t_program *p)
 	int	i;
 
 	i = 0;
+	p->philos = malloc(sizeof(t_data) * 200);
 	p->forks = malloc(sizeof(pthread_mutex_t) * 200);
 	while (i < p->number_of_philos)
 	{
@@ -59,6 +60,7 @@ void	init_program(t_program *p, char **argv)
 	p->time_2_die = new_atol(argv[2]);
 	p->time_2_eat = new_atol(argv[3]);
 	p->time_2_sleep = new_atol(argv[4]);
+	p->finish = 0;
 	if (argv[5])
 		p->number_of_meals = new_atol(argv[5]);
 	else

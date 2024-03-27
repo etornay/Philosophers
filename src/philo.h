@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:17:53 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/26 19:18:32 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:40:01 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ typedef struct s_program
 /* ---UTILS--- */
 int				new_is_digit(char *s);
 long long int	new_atol(char *s);
-void			printf_philos(t_program *p, int id, char *s);
 
 /* ---CHECKER--- */
 int				checker(char **argv);
 int				check_end(t_program *p);
+int				check_death(t_program *p);
 
 /* ---INIT_STRUCT--- */
 void			init_program(t_program *p, char **argv);
@@ -73,5 +73,13 @@ void			ft_usleep(t_program *p, int time);
 /* ---ROUTINE--- */
 void			*philo_routine(void *philo);
 void			philos_eat(t_data *p);
+void			only_one(t_program *p, pthread_t *t);
+
+/* ---PHILOS_UTILS--- */
+void			printf_philos(t_program *p, int id, char *s);
+void			russian_roulette(t_program *p);
+
+/* ---FREE--- */
+void			free_philos(t_program *p);
 
 #endif

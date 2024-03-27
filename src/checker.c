@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:33:19 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/25 17:06:27 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:49:12 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	checker(char **argv)
 	{
 		if (new_is_digit(argv[i]) == EXIT_FAILURE)
 		{
-			printf("Error\nNot a digit argument\n");
+			printf("Error\nNot a digit argument or negative argument\n");
 			return (EXIT_FAILURE);
 		}
 		i++;

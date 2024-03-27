@@ -6,11 +6,26 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:13:52 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/26 19:16:59 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:28:15 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	main_3(t_program *p, pthread_t	*thread)
+{
+	int	i;
+
+	i = 0;
+	russian_roulette(p);
+	while (i < p->number_of_philos)
+	{
+		pthread_join(thread[i], NULL);
+		i++;
+	}
+	free_philos(p);
+	return (EXIT_SUCCESS);
+}
 
 int	main_2(t_program *p)
 {
@@ -22,6 +37,11 @@ int	main_2(t_program *p)
 	pthread_mutex_lock(&p->time_lock);
 	p->start = ft_get_time();
 	pthread_mutex_unlock(&p->time_lock);
+	if (p->number_of_philos == 1)
+	{
+		only_one(p, thread);
+		return (EXIT_SUCCESS);
+	}
 	while (i < p->number_of_philos && p->number_of_philos > 1)
 	{
 		if (pthread_create(&thread[i], NULL, &philo_routine, &p->philos[i]))
@@ -31,6 +51,8 @@ int	main_2(t_program *p)
 		pthread_mutex_unlock(&p->time_lock);
 		i++;
 	}
+	if (main_3(p, thread) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

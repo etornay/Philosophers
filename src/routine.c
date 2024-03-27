@@ -6,11 +6,22 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:29:16 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/26 19:27:28 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:00:22 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	only_one(t_program *p, pthread_t *t)
+{
+	pthread_mutex_lock(&p->forks[p->philos[0].left_fork_id]);
+	printf_philos(p, p->philos[0].philos_id, "has taken a fork");
+	ft_usleep(p, p->time_2_die);
+	pthread_mutex_unlock(&p->forks[p->philos[0].left_fork_id]);
+	printf_philos(p, p->philos[0].philos_id, "died");
+	free_philos(p);
+	free(t);
+}
 
 static int	check_eat(t_data *philo)
 {
@@ -34,6 +45,7 @@ static int	check_eat(t_data *philo)
 		pthread_mutex_unlock(&p->time_lock);
 		return (EXIT_FAILURE);
 	}
+	pthread_mutex_unlock(&p->time_lock);
 	return (EXIT_SUCCESS);
 }
 
@@ -45,14 +57,14 @@ void	philos_eat(t_data *philo)
 	pthread_mutex_lock(&p->forks[philo->left_fork_id]);
 	printf_philos(p, philo->philos_id, "has taken a fork");
 	pthread_mutex_lock(&p->forks[philo->right_fork_id]);
-	printf_philos(p, philo->philos_id, "has taken another fork");
-	pthread_mutex_lock(&p->meal_lock);
+	printf_philos(p, philo->philos_id, "has taken a fork");
+	pthread_mutex_lock(&p->meal_mutex_lock);
 	printf_philos(p, philo->philos_id, "is eating");
 	pthread_mutex_lock(&p->time_lock);
 	philo->last_meal_time = ft_get_time();
 	pthread_mutex_unlock(&p->time_lock);
 	philo->philo_eat_time++;
-	pthread_mutex_unlock(&p->meal_lock);
+	pthread_mutex_unlock(&p->meal_mutex_lock);
 	check_eat(philo);
 	ft_usleep(p, p->time_2_eat);
 	pthread_mutex_unlock(&p->forks[philo->left_fork_id]);
@@ -80,10 +92,18 @@ void	*philo_routine(void *philo)
 	program = p->program;
 	if (p->philos_id % 2)
 		ft_usleep(program, 5);
-	while (!check_end(program))
+	while (1)
 	{
 		philos_eat(p);
+		if (check_end(program) == EXIT_FAILURE)
+			break ;
 		printf_philos(program, p->philos_id, "is sleeping");
+		ft_usleep(program, program->time_2_sleep);
+		if (check_end(program) == EXIT_FAILURE)
+			break ;
+		printf_philos(program, p->philos_id, "is thinking");
+		if (check_end(program) == EXIT_FAILURE)
+			break ;
 	}
 	return (NULL);
 }

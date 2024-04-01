@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:17:53 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/27 17:40:01 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:17:10 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <stdio.h>
 
 struct	s_program;
 
@@ -67,7 +68,6 @@ void			init_mutex(t_program *p);
 
 /* ---TIME--- */
 long			ft_get_time(void);
-long			ft_difference_time(t_program *p);
 void			ft_usleep(t_program *p, int time);
 
 /* ---ROUTINE--- */

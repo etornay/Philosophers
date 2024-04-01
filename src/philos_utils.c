@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:40:05 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/27 19:15:23 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:01:30 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	russian_roulette(t_program *p)
 {
 	while (33)
 	{
-		check_death(p);
-		if (check_end(p) == EXIT_FAILURE)
+		if (check_death(p) || check_end(p) == EXIT_FAILURE)
 			break ;
 	}
 }
@@ -50,13 +49,7 @@ void	printf_philos(t_program *p, int id, char *s)
 	time = ft_get_time() - p->start;
 	pthread_mutex_unlock(&p->time_lock);
 	pthread_mutex_lock(&p->write_lock);
-	pthread_mutex_lock(&p->dead_lock);
 	if (p->finish != 1)
-	{
-		pthread_mutex_unlock(&p->dead_lock);
 		printf("%i %d %s\n", time, id, s);
-	}
-	else
-		pthread_mutex_unlock(&p->dead_lock);
 	pthread_mutex_unlock(&p->write_lock);
 }

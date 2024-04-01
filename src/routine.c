@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:29:16 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/27 19:00:22 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:35:18 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,19 +91,13 @@ void	*philo_routine(void *philo)
 	p = philo;
 	program = p->program;
 	if (p->philos_id % 2)
-		ft_usleep(program, 5);
-	while (1)
+		ft_usleep(program, 20);
+	while (!check_end(program))
 	{
 		philos_eat(p);
-		if (check_end(program) == EXIT_FAILURE)
-			break ;
 		printf_philos(program, p->philos_id, "is sleeping");
 		ft_usleep(program, program->time_2_sleep);
-		if (check_end(program) == EXIT_FAILURE)
-			break ;
 		printf_philos(program, p->philos_id, "is thinking");
-		if (check_end(program) == EXIT_FAILURE)
-			break ;
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:06:36 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/27 14:16:44 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:15:54 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_data(t_program *p)
 		p->philos[i].philo_eat_time = 0;
 		p->philos[i].last_meal_time = 0;
 		p->philos[i].program = p;
+		p->all_philos_eaten = 0;
 		i++;
 	}
 }

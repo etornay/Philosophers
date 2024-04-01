@@ -6,11 +6,16 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:13:52 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/27 19:28:15 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:49:19 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_leaks(void)
+{
+	system("leaks -q philo");
+}
 
 int	main_3(t_program *p, pthread_t	*thread)
 {
@@ -60,6 +65,7 @@ int	main(int argc, char **argv)
 {
 	t_program	p;
 
+	atexit(ft_leaks);
 	if (argc == 5 || argc == 6)
 	{
 		if (checker(argv) == EXIT_FAILURE)

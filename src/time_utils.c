@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:29:23 by etornay-          #+#    #+#             */
-/*   Updated: 2024/03/26 19:21:19 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:32:25 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	ft_usleep(t_program *p, int time)
 			break ;
 		}
 	}
-}
-
-long	ft_difference_time(t_program *p)
-{
-	return (ft_get_time() - p->start);
 }
 
 long	ft_get_time(void)

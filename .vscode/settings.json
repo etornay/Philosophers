@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"algorithm": "c",
-		"locale": "c"
+		"locale": "c",
+		"__threading_support": "c"
 	}
 }

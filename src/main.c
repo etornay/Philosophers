@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:13:52 by etornay-          #+#    #+#             */
-/*   Updated: 2024/04/01 19:49:19 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:35:08 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int	main_3(t_program *p, pthread_t	*thread)
 		i++;
 	}
 	free_philos(p);
+	free(thread);
+	free(p->philos);
+	free(p->forks);
 	return (EXIT_SUCCESS);
 }
 

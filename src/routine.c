@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:29:16 by etornay-          #+#    #+#             */
-/*   Updated: 2024/04/01 17:35:18 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:39:52 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	only_one(t_program *p, pthread_t *t)
 	printf_philos(p, p->philos[0].philos_id, "died");
 	free_philos(p);
 	free(t);
+	free(p->philos);
+	free(p->forks);
 }
 
 static int	check_eat(t_data *philo)

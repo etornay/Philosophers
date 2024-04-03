@@ -6,7 +6,7 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:17:53 by etornay-          #+#    #+#             */
-/*   Updated: 2024/04/01 17:17:10 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:02:31 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,15 @@ typedef struct s_program
 	t_data			*philos;
 }	t_program;
 
-/* ---UTILS--- */
-int				new_is_digit(char *s);
-long long int	new_atol(char *s);
-
-/* ---CHECKER--- */
-int				checker(char **argv);
-int				check_end(t_program *p);
-int				check_death(t_program *p);
-
 /* ---INIT_STRUCT--- */
 void			init_program(t_program *p, char **argv);
 void			init_data(t_program *p);
 void			init_mutex(t_program *p);
 
-/* ---TIME--- */
-long			ft_get_time(void);
-void			ft_usleep(t_program *p, int time);
+/* ---CHECKER--- */
+int				checker(char **argv);
+int				check_end(t_program *p);
+int				check_death(t_program *p);
 
 /* ---ROUTINE--- */
 void			*philo_routine(void *philo);
@@ -78,6 +70,14 @@ void			only_one(t_program *p, pthread_t *t);
 /* ---PHILOS_UTILS--- */
 void			printf_philos(t_program *p, int id, char *s);
 void			russian_roulette(t_program *p);
+
+/* ---TIME--- */
+long			ft_get_time(void);
+void			ft_usleep(t_program *p, int time);
+
+/* ---UTILS--- */
+int				new_is_digit(char *s);
+long long int	new_atol(char *s);
 
 /* ---FREE--- */
 void			free_philos(t_program *p);

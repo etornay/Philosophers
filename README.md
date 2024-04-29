@@ -82,3 +82,16 @@ y X con el numero del filósofo.
 imprimes su muerte.
 
 • Te recuerdo, los filósofos deben evitar morir.
+
+<h1>3. Parte obligatoria</h1>
+
+_Las reglas específicas para la parte obligatoria son:_
+
+• Cada filósofo debe ser un hilo.
+
+• Hay un tenedor entre cada filósofo. por lo tanto, si hay varios filósofos, cada filósofo
+debe tener un tenedor a su izquierda y otro a su derecha. si solo hay un filósofo,
+solo habrá un tenedor en la mesa.
+
+• Para prevenir que los filósofos dupliquen los tenedores, deberás proteger los estados
+de los tenedores con un mutex por cada uno de ellos.
